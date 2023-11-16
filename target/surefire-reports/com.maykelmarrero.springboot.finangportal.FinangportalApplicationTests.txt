@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.maykelmarrero.springboot.finangportal.FinangportalApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.66 s - in com.maykelmarrero.springboot.finangportal.FinangportalApplicationTests

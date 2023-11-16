@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="/style.css" rel="stylesheet">
+    <title>Kreditangebotantrag</title>
+</head>
+
+<body>
+<nav class="navbar bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="/finangportal/admin">
+            <img src="/img/ms-icon.png" alt="finangportal" width="30" height="24">
+        </a>
+        <form action="#" th:action="@{/logout}" method="POST">
+            <input type="submit" value="Logout" class="btn btn-primary">
+        </form>
+    </div>
+</nav>
+
+<div class="container">
+
+    <h1>Finangportal Main Verwalten</h1><br><br>
+    <hr>
+
+    <!-- Add a button -->
+    <a th:href="@{/kreditangeboten/list}"
+       class="btn btn-primary btn-sm mb-3">
+        Kreditangeboten
+    </a>
+
+    <a th:href="@{/kreditangebotantrag/list}"
+       class="btn btn-default btn-sm mb-3">
+        Kreditangebotantrag
+    </a>
+
+    <h3>Call - Center Seite</h3><br><br>
+    <h5>Kreditangebotantrag</h5>
+    <hr>
+
+    <table class="table table-responsive table-striped table-hover align-middle">
+        <thead class="table-dark">
+        <tr>
+            <th>Antrag Id</th>
+            <th>Antragsteller Vorname</th>
+            <th>Antragsteller Name</th>
+            <th>Antragsteller Telefon</th>
+            <th>Antragsteller Gehalt</th>
+            <th>Antragsteller Geburtsdatum</th>
+            <th>Antragsteller Email</th>
+            <th>Antrag Erstellungsdatum</th>
+            <th>Kreditangebot</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+
+        <tr th:each="tempKreditangebotantrag : ${kreditangebotantrag}">
+            <td th:text="${tempKreditangebotantrag.antragId}"/>
+            <td th:text="${tempKreditangebotantrag.antragstellerVname}"/>
+            <td th:text="${tempKreditangebotantrag.antragstellerName}"/>
+            <td th:text="${tempKreditangebotantrag.antragstellerTelefon}"/>
+            <td th:text="${tempKreditangebotantrag.antragstellerGehalt}"/>
+            <td th:text="${tempKreditangebotantrag.antragstellerGeburtsdatum}"/>
+            <td th:text="${tempKreditangebotantrag.antragstellerEmail}"/>
+            <td th:text="${tempKreditangebotantrag.antragErstellungsdatum}"/>
+            <td th:text="${tempKreditangebotantrag.kreditangeboten.kreditangebotName}"/>
+
+
+            <!-- Agregar la columna de selección de estado -->
+            <td class="col-2">
+                <!-- <div class="form-floating mb-2">
+                     <select th:field="*{kreditangebotantragStatus}" class="form-control w-50" id="floatingKreditStatus">
+                         <option value="" disabled selected>Select Status</option>
+                         <option th:each="status : ${getAntragstatusNameList}"
+                                 th:value="${status.antragstatusId}"
+                                 th:text="${status.antragstatusName}"/>
+                     </select>
+                     <label for="floatingKreditStatus">Kreditangebot Status</label>
+                 </div>-->
+                <div class="input-group">
+                    <select class="form-select" id="statusSelect" aria-label="Status auswählen">
+                        <option selected disabled>Status auswählen</option>
+                        <option value="1">Kontaktiert</option>
+                        <option value="2">Anrufen</option>
+                        <option value="3">Beratung</option>
+                        <option value="4">Abgesagt</option>
+                    </select>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>
+
+
+

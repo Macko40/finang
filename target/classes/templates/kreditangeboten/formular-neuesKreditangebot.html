@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="/style.css" rel="stylesheet">
+    <title>Neues Kreditangebot Hinzufügen</title>
+</head>
+<body>
+
+<div class="container">
+    <h3>Kreditangeboten</h3>
+    <hr>
+    <p class="h4 mb-4">Neues Kreditangebot hinzufügen</p>
+
+    <!--<form action="#" th:action="@{/kreditangeboten/save}"
+          th:object="${kreditangeboten}" method="POST">
+
+        &lt;!&ndash; Add hidden form field to handle the update &ndash;&gt;
+        <input type="hidden" th:field="*{kreditangebotId}">
+        <div class="form-floating mb-4">
+            <input type="text" th:field="*{kreditangebotName}"
+                   class="form-control mb-4 w-25"
+                   placeholder="Kreditangebot Name"
+                   id="floatingKreditangebotName">
+            <label for="floatingKreditangebotName">Kreditangebot Name</label>
+        </div>
+
+        <div class="form-floating mb-4">
+            <input type="text" th:field="*{kreditangebotBeschreibung}"
+                   class="form-control mb-4 w-25"
+                   placeholder="Kreditangebot Beschreibung" id="floatingKreditangebotBeschreibung">
+            <label for="floatingKreditangebotBeschreibung">Kreditangebot Beschreibung</label>
+        </div>
+        <input type="text" th:field="*{kreditangebotBeschreibung}"
+               class="form-control mb-4 w-25" placeholder="Kreditangebot Beschreibung">
+
+        <input type="number" th:field="*{kreditPunkte}"
+               class="form-control mb-4 w-25" placeholder="Kreditangebot Punkte">
+
+        <input type="number" th:field="*{kreditangebotJahresgebuehr}"
+               class="form-control mb-4 w-25" placeholder="Kreditangebot Jahresgebüher">
+
+        <input type="hidden" th:field="*{kreditangebotErstellungsdatum}"
+               class="form-control mb-4 w-25" placeholder="Kreditangebot Erstellungsdatum">
+
+        <input type="text" th:field="*{kreditangebotAblaufdatum}"
+               class="form-control mb-4 w-25" placeholder="Kreditangebot Ablaufdatum">
+
+        <select type="text" th:field="*{kreditangebotenStatus}"
+                class="form-control mb-4 w-25" placeholder="Kreditangebot Status">
+            <option value="" disabled selected>Select Status</option>
+            <option th:each="tempKreditangebotStatus : ${getStatusNameList}"
+                    th:value="${tempKreditangebotStatus.statusId}"
+                    th:text="${tempKreditangebotStatus.statusName}"/>
+        </select>
+
+        <button type="submit" class="btn btn-info col-2">Speichern</button>
+    </form>-->
+    <form action="#" th:action="@{/kreditangeboten/save}" th:object="${kreditangeboten}" method="POST">
+
+        <input type="hidden" th:field="*{kreditangebotId}">
+
+        <div class="form-floating mb-4">
+            <input type="text" th:field="*{kreditangebotName}" class="form-control w-50"
+                   placeholder="Kreditangebot Name" id="floatingKreditangebotName">
+            <label for="floatingKreditangebotName">Kreditangebot Name</label>
+        </div>
+
+        <div class="form-floating mb-4">
+            <!-- Utilizando textarea con la clase form-floating para permitir más caracteres -->
+            <textarea th:field="*{kreditangebotBeschreibung}" class="form-control w-50 form-floating"
+                      placeholder="Kreditangebot Beschreibung" id="floatingKreditangebotBeschreibung"></textarea>
+            <label for="floatingKreditangebotBeschreibung">Kreditangebot Beschreibung</label>
+        </div>
+
+        <div class="form-floating mb-4">
+            <input type="number" th:field="*{kreditPunkte}" class="form-control w-50"
+                   placeholder="Kreditangebot Punkte" id="floatingKreditPunkte">
+            <label for="floatingKreditPunkte">Kreditangebot Punkte</label>
+        </div>
+
+        <div class="form-floating mb-4">
+            <input type="number" th:field="*{kreditangebotJahresgebuehr}" class="form-control w-50"
+                   placeholder="Kreditangebot Jahresgebühr" id="floatingKreditJahresgebuehr">
+            <label for="floatingKreditJahresgebuehr">Kreditangebot Jahresgebühr</label>
+        </div>
+
+        <div class="form-floating mb-4">
+            <input type="text" th:field="*{kreditangebotAblaufdatum}" class="form-control w-50"
+                   placeholder="Kreditangebot Ablaufdatum" id="floatingKreditAblaufdatum">
+            <label for="floatingKreditAblaufdatum">Kreditangebot Ablaufdatum</label>
+        </div>
+
+        <div class="form-floating mb-4">
+            <select th:field="*{kreditangebotenStatus}" class="form-control w-50" id="floatingKreditStatus">
+                <option value="" disabled selected>Select Status</option>
+                <option th:each="tempKreditangebotStatus : ${getStatusNameList}"
+                        th:value="${tempKreditangebotStatus.statusId}"
+                        th:text="${tempKreditangebotStatus.statusName}"/>
+            </select>
+            <label for="floatingKreditStatus">Kreditangebot Status</label>
+        </div>
+
+        <button type="submit" class="btn btn-info col-2">Speichern</button>
+    </form>
+
+
+    <br>
+
+    <a th:href="@{/kreditangeboten/list}">Zurück zum Kreditangebot Liste</a>
+
+</div>
+
+
+</body>
+</html>

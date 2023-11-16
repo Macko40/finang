@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="/style.css" rel="stylesheet">
+    <title>Confirmation page</title>
+</head>
+<body>
+<div class="container">
+    <div class="container mt-5">
+        <h1>Kreditangebotantrag bestätigt </h1>
+        <p>Sehr geehrte(er) Frau/Herr <span th:text="*{kreditangebotantrag.antragstellerName}"> </span>
+            Ihr Kreditangebotantrag wurde unter der Nummer
+            <span th:text="${kreditangebotantragId}"></span> registriert
+        </p>
+        <p>Innerhalb der nächsten zwei Tage werden Sie von unserem Call-Center kontaktiert, damit Sie eine persönliche
+            Beratung in Anspruch nehmen können.</p>
+        <hr>
+        <br>
+        <a th:href="@{/kreditangeboten/veroeffentlichtenKreditangebote}">Zurück zum Kreditangeboten</a>
+    </div>
+</div>
+</body>
+</html>
