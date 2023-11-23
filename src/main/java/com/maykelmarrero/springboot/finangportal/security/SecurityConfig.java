@@ -4,11 +4,14 @@ import com.maykelmarrero.springboot.finangportal.controller.CustomAuthentication
 import com.maykelmarrero.springboot.finangportal.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
 @Configuration
 public class SecurityConfig {
@@ -68,9 +71,14 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(configurer ->
                         configurer
-                                .requestMatchers("/kreditangeboten/veroeffentlichtenKreditangebote").permitAll() // Public access
-                                .requestMatchers("/kreditangeboten/**", "/kreditangebotantrag/**").hasRole("ADMIN") // Admin access
-                                .requestMatchers("/kreditangebotantrag/**").hasRole("CALLCENTER") // Callcenter access
+                                .requestMatchers(antMatcher("/kreditangeboten/veroeffentlichtenKreditangebote"),
+                                        antMatcher("/img/**"), antMatcher("/kreditangebotantrag/formular**"),
+                                        antMatcher("/kreditangebotantrag/save"))
+                                .permitAll() // Public access
+                                .requestMatchers(antMatcher("/kreditangeboten/**"), antMatcher("/kreditangebotantrag/**"))
+                                .hasRole("ADMIN") // Admin access
+                                .requestMatchers(antMatcher("/kreditangebotantrag/**"))
+                                .hasRole("CALLCENTER") // Callcenter access
                                 .anyRequest().authenticated()
                 )
                 .formLogin(form ->

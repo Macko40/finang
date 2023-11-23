@@ -84,6 +84,7 @@ public class KreditangebotantragController {
     @PostMapping("/save")
     public String speichernKreditangebotantrag(@Valid @ModelAttribute("kreditangebotantrag") Kreditangebotantrag kreditangebotantrag,
                                                Model model, BindingResult bindingResult) {
+        kreditangebotantrag.setKreditangebotantragStatus(kreditangebotantragStatusService.getKreditangebotantragStatusName().get(0));
         System.out.println(kreditangebotantrag.toString());
 
         // save kreditangebotantrag

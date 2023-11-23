@@ -165,7 +165,7 @@ public class Kreditangebotantrag {
     @Override
     public String toString() {
         return "Kreditangebotantrag{" +
-                "kreditangebotantragStatusId=" + kreditangebotantragStatus.getAntragstatusId() +
+                "kreditangebotantragStatusId=" + (kreditangebotantragStatus == null ? null : kreditangebotantragStatus.getAntragstatusId()) +
                 ", antragId=" + antragId +
                 ", antragstellerVname='" + antragstellerVname + '\'' +
                 ", antragstellerName='" + antragstellerName + '\'' +

@@ -62,15 +62,15 @@
         </thead>
 
         <tr th:each="tempKreditangebotantrag : ${kreditangebotantrag}">
-            <td th:text="${tempKreditangebotantrag.antragId}"/>
-            <td th:text="${tempKreditangebotantrag.antragstellerVname}"/>
-            <td th:text="${tempKreditangebotantrag.antragstellerName}"/>
-            <td th:text="${tempKreditangebotantrag.antragstellerTelefon}"/>
-            <td th:text="${tempKreditangebotantrag.antragstellerGehalt}"/>
-            <td th:text="${tempKreditangebotantrag.antragstellerGeburtsdatum}"/>
-            <td th:text="${tempKreditangebotantrag.antragstellerEmail}"/>
-            <td th:text="${tempKreditangebotantrag.antragErstellungsdatum}"/>
-            <td th:text="${tempKreditangebotantrag.kreditangeboten.kreditangebotName}"/>
+            <td class="col-1" th:text="${tempKreditangebotantrag.antragId}"/>
+            <td class="col-1" th:text="${tempKreditangebotantrag.antragstellerVname}"/>
+            <td class="col-1" th:text="${tempKreditangebotantrag.antragstellerName}"/>
+            <td class="col-1" th:text="${tempKreditangebotantrag.antragstellerTelefon}"/>
+            <td class="col-1" th:text="${tempKreditangebotantrag.antragstellerGehalt}"/>
+            <td class="col-1" th:text="${tempKreditangebotantrag.antragstellerGeburtsdatum}"/>
+            <td class="col-1" th:text="${tempKreditangebotantrag.antragstellerEmail}"/>
+            <td class="col-1" th:text="${tempKreditangebotantrag.antragErstellungsdatum}"/>
+            <td class="col-1" th:text="${tempKreditangebotantrag.kreditangeboten.kreditangebotName}"/>
 
 
             <!-- Agregar la columna de selección de estado -->
