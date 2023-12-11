@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class FinangController {
 
     @GetMapping("/admin")
-    public String adminnistation(){
+    public String administration(){
         return "/finang/main-administration";
     }
 }

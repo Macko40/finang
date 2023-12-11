@@ -31,13 +31,16 @@ public class KreditangebotController {
     // add mapping for "/list"
     @GetMapping("/list")
     public String listeKreditangeboten(Model theModel) {
+        try {
+            // get the kreditangeboten from db
+            List<Kreditangeboten> kreditangeboten = kreditangeboteService.findAll();
 
-        // get the kreditangeboten from db
-        List<Kreditangeboten> kreditangeboten = kreditangeboteService.findAll();
+            // add to the spring model
+            theModel.addAttribute("kreditangeboten", kreditangeboten);
+        } catch (Exception ex) {
 
-        // add to the spring model
-        theModel.addAttribute("kreditangeboten", kreditangeboten);
-
+            ex.printStackTrace();// Print the exception trace on the console
+        }
         return "kreditangeboten/liste-kreditangeboten";
     }
 

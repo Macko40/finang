@@ -73,11 +73,18 @@ public class SecurityConfig {
                         configurer
                                 .requestMatchers(antMatcher("/kreditangeboten/veroeffentlichtenKreditangebote"),
                                         antMatcher("/img/**"), antMatcher("/kreditangebotantrag/formular**"),
-                                        antMatcher("/kreditangebotantrag/save"))
+                                        antMatcher("/kreditangebotantrag/save"),
+                                        antMatcher("/register/**"),
+                                        antMatcher("/style.css"))
                                 .permitAll() // Public access
-                                .requestMatchers(antMatcher("/kreditangeboten/**"), antMatcher("/kreditangebotantrag/**"))
+                                .requestMatchers(antMatcher("/kreditangeboten/**"),
+                                        antMatcher("/kreditangebotantrag/**"),
+                                        antMatcher("/img/**"),
+                                        antMatcher("/style.css"))
                                 .hasRole("ADMIN") // Admin access
-                                .requestMatchers(antMatcher("/kreditangebotantrag/**"))
+                                .requestMatchers(antMatcher("/kreditangebotantrag/**"),
+                                        antMatcher("/img/**"),
+                                        antMatcher("/style.css"))
                                 .hasRole("CALLCENTER") // Callcenter access
                                 .anyRequest().authenticated()
                 )
