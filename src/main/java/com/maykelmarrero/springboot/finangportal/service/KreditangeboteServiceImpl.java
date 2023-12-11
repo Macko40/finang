@@ -43,6 +43,7 @@ public class KreditangeboteServiceImpl implements KreditangeboteService {
             throw new RuntimeException("Kreditangebot nicht gefunden mit id - " + kreditangebotId);
 
         }
+
         return kreditangeboten;
     }
 

@@ -14,7 +14,10 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 
@@ -26,20 +29,55 @@ public class KreditangeboteServiceImplTest {
     public KreditangeboteRepository kreditangeboteRepository;
     @Test
     public void findAllTest() {
-        //given
-        List<Kreditangeboten> kreditangebotenList = Arrays.asList(new Kreditangeboten("KreditangebotTestName",
+        //given Mock-Daten erstellen
+        List<Kreditangeboten> kreditangebotenList = Arrays.asList(new Kreditangeboten(
+                "KreditangebotTestName",
                 "KreditangebotTestBeschreibung",
                 3000,
                 BigDecimal.valueOf(30.00),
                 LocalDate.now(),
                 null,
-                new KreditangebotenStatus("StatusNameTest", "StausBeschreibungTest")));
+                new KreditangebotenStatus("StatusNameTest", "StatusBeschreibungTest")));
         when(kreditangeboteRepository.findAllByOrderByKreditangebotErstellungsdatumDesc()).thenReturn(kreditangebotenList);
-        //when
+        //when Testenden Methodenaufruf
         List<Kreditangeboten> kreditangebotenListResult = kreditangeboteServiceImpl.findAll();
-        //then
+        // then Überprüfen, das erwartete Verhalten und das Ergebnis
         verify(kreditangeboteRepository,times(1)).findAllByOrderByKreditangebotErstellungsdatumDesc();
         Assert.notNull(kreditangebotenListResult,"Ist es nicht null");
         Assert.isTrue(kreditangebotenListResult.get(0).getKreditangebotName().equals("KreditangebotTestName"), "soll true sein" );
+    }
+
+    @Test
+    public void testFindById_KreditangebotGefunden() {
+        // given Mock-Daten erstellen
+        int kreditangebotId = 1;
+        Kreditangeboten mockKreditangebot = new Kreditangeboten(
+                "KreditangebotTestName",
+                "KreditangebotTestBeschreibung",
+                3000,
+                BigDecimal.valueOf(30.00),
+                LocalDate.now(),
+                null,
+                new KreditangebotenStatus("StatusNameTest", "StatusBeschreibungTest"));
+        Optional<Kreditangeboten> mockResult = Optional.of(mockKreditangebot);
+        when(kreditangeboteRepository.findById(kreditangebotId)).thenReturn(mockResult);
+        // when
+        Kreditangeboten result = kreditangeboteServiceImpl.findById(kreditangebotId);
+        // then Überprüfen, ob das erwartete Verhalten eingetreten ist
+        assertEquals(mockKreditangebot, result);
+        verify(kreditangeboteRepository,times(1)).findById(1);
+    }
+
+
+    @Test
+    public void testFindById_KreditangebotNichtGefunden() {
+        // given Mock-Daten erstellen
+        int kreditangebotId = 2;
+        Optional<Kreditangeboten> mockResult = Optional.empty();
+        // when Mock-Verhalten definieren
+        when(kreditangeboteRepository.findById(kreditangebotId)).thenReturn(mockResult);
+        // then Methode aufrufen und auf eine RuntimeException prüfen
+        assertThrows(RuntimeException.class, () -> kreditangeboteServiceImpl.findById(kreditangebotId));
+        verify(kreditangeboteRepository).findById(2);
     }
 }
